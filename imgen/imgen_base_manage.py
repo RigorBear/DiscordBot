@@ -1,16 +1,16 @@
 import sqlite3
 
-conn = sqlite3.connect("mcbase2.db")  # или :memory: чтобы сохранить в RAM
+conn = sqlite3.connect("igbase.db")  # или :memory: чтобы сохранить в RAM
 cursor = conn.cursor()
 
 def create_db(cursor):
     cursor.execute("""CREATE TABLE users (user_id, name, status, lastdate, rating, bot, discriminator, avatar)""")
 
 def create_pairs_table(cursor):
-    cursor.execute("""CREATE TABLE triples (Id INTEGER PRIMARY KEY,word1, word2, word3, place)""")
+    cursor.execute("""CREATE TABLE three_pix (Id INTEGER PRIMARY KEY, pix1, pix2, pix3)""")
 
 def add_user(userdict: dict):
-    user = [(userdict.get('id'), userdict.get('name'), 'online', '04.07.2020',0,userdict.get('bot'),
+    user = [(userdict.get('id'), userdict.get('name'), 'online', '04.07.2020', 0, userdict.get('bot'),
              userdict.get('discriminator'), userdict.get('avatar'))]
 
     cursor.executemany("INSERT INTO users VALUES (?,?,?,?,?,?,?,?)", user)
